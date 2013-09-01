@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="FontsFontsFonts.Views.SampleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        mc:Ignorable="d ignore"
+        DataContext="{Binding Sample, Source={StaticResource Locator}}">
+
+    <StackPanel>
+        <TextBlock TextWrapping="Wrap"
+                   FontFamily="{Binding FontFamily}" 
+                   FontSize="{Binding SelectedFontSize}"
+                   FontStretch="{Binding SelegedFontStretch}"
+                   FontStyle="{Binding SelectedFontStyle}"
+                   FontWeight="{Binding SelectedFontWeight}"
+                   Margin="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi augue nunc, vulputate a est in, tempus varius eros. Nullam ut leo commodo, fermentum magna eget, rutrum ligula. Nulla ornare nisi nec sapien aliquam, in posuere ipsum posuere. Aenean vel massa viverra, pellentesque nulla at, laoreet enim. Vivamus et congue nibh. Praesent tristique luctus adipiscing. Quisque in orci vitae eros sollicitudin commodo ac sed felis. Nullam ligula dui, malesuada et porttitor sed, imperdiet vitae purus. Nulla sit amet nisl eu augue iaculis porttitor. Donec eget tincidunt quam. Mauris volutpat leo quis lacus dignissim, id molestie massa tempor.</TextBlock>
+        <TextBlock TextWrapping="Wrap" 
+                   FontFamily="{Binding FontFamily}" 
+                   FontSize="{Binding SelectedFontSize}"
+                   FontStretch="{Binding SelectedFontStretch}"
+                   FontStyle="{Binding SelectedFontStyle}"
+                   FontWeight="{Binding SelectedFontWeight}"
+                   Margin="5">Sed et semper felis, eu dictum arcu. Nam risus magna, condimentum sed purus ac, porta fringilla mi. Vestibulum diam enim, fermentum vel sapien ac, sollicitudin iaculis mi. Sed ultrices nec purus id vehicula. Ut consequat leo justo, vitae fringilla diam ultrices non. Proin vehicula risus vitae odio cursus ullamcorper. Ut dui est, aliquet id rhoncus a, elementum ut mi. Donec gravida semper sapien, sit amet sagittis velit mollis bibendum. Nunc vitae est ac dolor molestie elementum ut non ipsum. Vestibulum eu augue at mauris ullamcorper vulputate.</TextBlock>
+        <TextBlock TextWrapping="Wrap"
+                   FontFamily="{Binding FontFamily}" 
+                   FontSize="{Binding SelectedFontSize}"
+                   FontStretch="{Binding SelectedFontStretch}"
+                   FontStyle="{Binding SelectedFontStyle}"
+                   FontWeight="{Binding SelectedFontWeight}"
+                   Margin="5">Ut iaculis, turpis ut lacinia lobortis, risus tortor varius libero, nec interdum augue lectus eu libero. Duis in magna porta, varius nunc at, auctor arcu. Phasellus tellus nisi, blandit sed justo ut, vulputate sodales orci. Quisque nisl justo, lacinia sit amet felis vel, fermentum molestie velit. Donec dignissim vitae enim sit amet aliquet. Nunc gravida elementum libero, quis aliquet purus adipiscing a. Maecenas tristique enim libero, vel semper est dictum vitae. Integer eleifend elit vel felis dictum porttitor. Sed scelerisque eleifend dui, a rutrum dui commodo eget.</TextBlock>
+        <TextBlock TextWrapping="Wrap"
+                   FontFamily="{Binding FontFamily}" 
+                   FontSize="{Binding SelectedFontSize}"
+                   FontStretch="{Binding SelectedFontStretch}"
+                   FontStyle="{Binding SelectedFontStyle}"
+                   FontWeight="{Binding SelectedFontWeight}"
+                   Margin="5">Quisque nec mauris varius justo condimentum semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent luctus justo vitae turpis feugiat, non mollis nunc pretium. Etiam cursus ut sem eget elementum. Praesent a semper elit, non vestibulum nisl. Integer sed ante ut dolor eleifend blandit et id purus. Aenean consectetur feugiat ultricies.</TextBlock>
+        <TextBlock TextWrapping="Wrap"
+                   FontFamily="{Binding FontFamily}" 
+                   FontSize="{Binding SelectedFontSize}"
+                   FontStretch="{Binding SelectedFontStretch}"
+                   FontStyle="{Binding SelectedFontStyle}"
+                   FontWeight="{Binding SelectedFontWeight}"
+                   Margin="5">Ut auctor dolor sit amet lectus eleifend pulvinar. Proin augue purus, dignissim sodales laoreet vel, semper ut massa. Pellentesque sit amet mollis mi. Nullam consequat gravida nibh, vel dignissim ligula tempus eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar magna eu malesuada posuere. Phasellus pretium id orci non volutpat. Mauris elit urna, rhoncus a tempor at, laoreet at lacus. Cras quis varius urna. Sed ipsum elit, pellentesque ac arcu sed, commodo fringilla sem. Nam aliquam dapibus metus ornare blandit. Fusce quis urna aliquam, venenatis arcu vel, convallis ligula. Aliquam sed dolor malesuada, sodales enim et, mollis nunc.</TextBlock>
+
+    </StackPanel>
+</UserControl>

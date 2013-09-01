@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="FontsFontsFonts.Views.FontView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        mc:Ignorable="d ignore"
+        DataContext="{Binding Font, Source={StaticResource Locator}}">
+
+    <StackPanel>
+        <TextBlock FontSize="20">Font Details</TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Padding="5 0 5 0">Font Name:</TextBlock>
+            <TextBlock Text="{Binding FontName}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Padding="5 0 5 0">Baseline:</TextBlock>
+            <TextBlock Text="{Binding Baseline}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Padding="5 0 5 0">Base Uri:</TextBlock>
+            <TextBlock Text="{Binding BaseUri}"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Padding="5 0 5 0">Family Names:</TextBlock>
+            <ListBox ItemsSource="{Binding FamilyNames}">
+            </ListBox>
+        </StackPanel>
+
+        <TextBlock FontWeight="Bold">TypeFaces:</TextBlock>
+        <TextBlock Padding="5 0 5 0">Adjusted Face Names:</TextBlock>
+        <ListView ItemsSource="{Binding FamilyTypeFaces}" MaxHeight="250">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True">
+                    <GridViewColumn Header="DeviceFontName" DisplayMemberBinding="{Binding DeviceFontName}"/>
+                    <GridViewColumn Header="CapsHeight" DisplayMemberBinding="{Binding CapsHeight}"/>
+                    <GridViewColumn Header="DeviceFontName" DisplayMemberBinding="{Binding DeviceFontName}"/>
+                    <GridViewColumn Header="CapsHeight" DisplayMemberBinding="{Binding CapsHeight}"/>
+                    <GridViewColumn Header="Stretch" DisplayMemberBinding="{Binding Stretch}"/>
+                    <GridViewColumn Header="StrikethroughPosition" DisplayMemberBinding="{Binding StrikethroughPosition}"/>
+                    <GridViewColumn Header="StrikethroughThickness" DisplayMemberBinding="{Binding StrikethroughThickness}"/>
+                    <GridViewColumn Header="Style" DisplayMemberBinding="{Binding Style}"/>
+                    <GridViewColumn Header="UnderlinePosition" DisplayMemberBinding="{Binding UnderlinePosition}"/>
+                    <GridViewColumn Header="UnderlineThickness" DisplayMemberBinding="{Binding UnderlineThickness}"/>
+                    <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}"/>
+                    <GridViewColumn Header="XHeight" DisplayMemberBinding="{Binding XHeight}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Padding="5 0 5 0">Line spacing:</TextBlock>
+            <TextBlock Text="{Binding LineSpacing}"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Padding="5 0 5 0">Source:</TextBlock>
+            <TextBlock Text="{Binding Source}"></TextBlock>
+        </StackPanel>
+
+
+    </StackPanel>
+</UserControl>

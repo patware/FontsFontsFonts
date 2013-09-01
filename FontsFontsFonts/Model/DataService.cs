@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace FontsFontsFonts.Model
 {
@@ -9,7 +10,11 @@ namespace FontsFontsFonts.Model
             // Use this to connect to the actual data service
 
             var item = new DataItem();
-            foreach (var ff in System.Windows.Media.Fonts.SystemFontFamilies)
+            var ofl = from f in System.Windows.Media.Fonts.SystemFontFamilies
+                     orderby f.ToString()
+                     select f;
+            
+            foreach (var ff in ofl)
                 item.AllFonts.Add(new OneFont(ff));
 
             callback(item, null);

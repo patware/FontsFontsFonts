@@ -33,7 +33,7 @@ namespace FontsFontsFonts.ViewModel
                     }
 
                     _fonts = new ReadOnlyObservableCollection<OneFont>(item.AllFonts);                    
-                    _fontSize = item.LastFontSize;
+                    this.FontSize = item.LastFontSize;
                 });
 
 
@@ -42,6 +42,45 @@ namespace FontsFontsFonts.ViewModel
             addFontStretches();
 
             addFontWeights();
+
+            this.PropertyChanged += MainViewModel_PropertyChanged;
+
+            sendFontName();
+            sendFontStyle();
+
+        }
+
+        void MainViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case SelectedFontPropertyName:
+                    sendFontName();
+                    break;
+                case FontSizePropertyName:
+                case SelectedFontStretchPropertyName:
+                case SelectedFontStylePropertyName:
+                case SelectedFontWeightPropertyName:
+                    sendFontStyle();
+                    break;
+            }
+        }
+
+        private void sendFontStyle()
+        {
+            var fsc = new Messaging.FontStylingChanged()
+            {
+                FontSize = this.FontSize,
+                FontStretch = this.SelectedFontStretch,
+                FontStyle = this.SelectedFontStyle,
+                FontWeight = this.SelectedFontWeight
+            };
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send<Messaging.FontStylingChanged>(fsc);
+        }
+
+        private void sendFontName()
+        {
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send<Messaging.FontSelected>(new Messaging.FontSelected(_selectedFont));
         }
         private void addFontStyles()
         {
@@ -193,6 +232,39 @@ namespace FontsFontsFonts.ViewModel
         }
         #endregion
 
+        #region SelectedFont
+        /// <summary>
+        /// The <see cref="SelectedFont" /> property's name.
+        /// </summary>
+        public const string SelectedFontPropertyName = "SelectedFont";
+
+        private OneFont _selectedFont;
+
+        /// <summary>
+        /// Sets and gets the SelectedFont property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public OneFont SelectedFont
+        {
+            get
+            {
+                return _selectedFont;
+            }
+
+            set
+            {
+                if (_selectedFont == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(SelectedFontPropertyName);
+                _selectedFont = value;
+                RaisePropertyChanged(SelectedFontPropertyName);
+            }
+        }
+        #endregion
+
         #region FontSize
         /// <summary>
         /// The <see cref="FontSize" /> property's name.
@@ -291,8 +363,110 @@ namespace FontsFontsFonts.ViewModel
             }
         }
         #endregion
-	
+        
+        #region SelectedFontStyle
+        /// <summary>
+        /// The <see cref="SelectedFontStyle" /> property's name.
+        /// </summary>
+        public const string SelectedFontStylePropertyName = "SelectedFontStyle";
+
+        private System.Windows.FontStyle _selectedFontStyle;
+
+        /// <summary>
+        /// Sets and gets the SelectedFontStyle property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public System.Windows.FontStyle SelectedFontStyle
+        {
+            get
+            {
+                return _selectedFontStyle;
+            }
+
+            set
+            {
+                if (_selectedFontStyle == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(SelectedFontStylePropertyName);
+                _selectedFontStyle = value;
+                RaisePropertyChanged(SelectedFontStylePropertyName);
+            }
+        }
+        #endregion
+
+        #region SelectedFontStretch
+        /// <summary>
+        /// The <see cref="SelectedFontStretch" /> property's name.
+        /// </summary>
+        public const string SelectedFontStretchPropertyName = "SelectedFontStretch";
+
+        private FontStretch _selectedFontStretch;
+
+        /// <summary>
+        /// Sets and gets the SelectedFontStretch property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public FontStretch SelectedFontStretch
+        {
+            get
+            {
+                return _selectedFontStretch;
+            }
+
+            set
+            {
+                if (_selectedFontStretch == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(SelectedFontStretchPropertyName);
+                _selectedFontStretch = value;
+                RaisePropertyChanged(SelectedFontStretchPropertyName);
+            }
+        }
+        #endregion
+
+        #region SelectedFontWeight
+        /// <summary>
+        /// The <see cref="SelectedFontWeight" /> property's name.
+        /// </summary>
+        public const string SelectedFontWeightPropertyName = "SelectedFontWeight";
+
+        private FontWeight _selectedFontWeight;
+
+        /// <summary>
+        /// Sets and gets the SelectedFontWeight property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public FontWeight SelectedFontWeight
+        {
+            get
+            {
+                return _selectedFontWeight;
+            }
+
+            set
+            {
+                if (_selectedFontWeight == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(SelectedFontWeightPropertyName);
+                _selectedFontWeight = value;
+                RaisePropertyChanged(SelectedFontWeightPropertyName);
+            }
+        }
+        #endregion
 	    
+        #endregion
+
+        #region Messenging
+        
         #endregion
     }
 }

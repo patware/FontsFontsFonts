@@ -39,6 +39,8 @@ namespace FontsFontsFonts.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<FontViewModel>();
+            SimpleIoc.Default.Register<SampleViewModel>();
         }
 
         /// <summary>
@@ -55,6 +57,33 @@ namespace FontsFontsFonts.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets the Main property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public FontViewModel Font
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<FontViewModel>();
+            }
+        }
+
+        /// <summary>
+        /// Gets the Main property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public SampleViewModel Sample
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SampleViewModel>();
+            }
+        }
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>

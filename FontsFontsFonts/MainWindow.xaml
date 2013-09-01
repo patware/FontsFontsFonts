@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.ignore.com"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:views="clr-namespace:FontsFontsFonts.Views"
         mc:Ignorable="d ignore"
         Height="428"
-        Width="437"
+        Width="532"
         Title="FontsFontsFonts - by Patware"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
@@ -20,54 +21,61 @@
     </Window.Resources>
 
     <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <xctk:WatermarkTextBox Grid.Row="0" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" Margin="5" Watermark="Enter text or leave blank to use font name"/>
-
-        <Grid Grid.Row="1">
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Row="0" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontStyles, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontStyle" FontStyle="{Binding Path=SelectedItem}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding .}" FontStyle="{Binding .}"></TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox Grid.Row="0" Grid.Column="1" Margin="2" ItemsSource="{Binding WindowsFontStretches, UpdateSourceTrigger=PropertyChanged}" x:Name="SelegedFontStretch">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding .}" FontStretch="{Binding .}"></TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox Grid.Row="1" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontWeights, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontWeight">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding .}" FontWeight="{Binding .}"></TextBlock></DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <xctk:WatermarkTextBox Grid.Row="0" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" Margin="5" Watermark="Enter text or leave blank to use font name"/>
 
-            <xctk:DecimalUpDown Grid.Column="2" Minimum="5" Maximum="64" Value="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" FormatString="F1" Margin="2" VerticalAlignment="Top" x:Name="SelectedFontSize"></xctk:DecimalUpDown>
-        </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <ListBox ItemsSource="{Binding Fonts}" Grid.Row="2" HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock 
+                <ComboBox Grid.Row="0" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontStyles, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontStyle" FontStyle="{Binding Path=SelectedItem}" SelectedItem="{Binding SelectedFontStyle, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding .}" FontStyle="{Binding .}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="2" ItemsSource="{Binding WindowsFontStretches, UpdateSourceTrigger=PropertyChanged}" x:Name="SelegedFontStretch" SelectedItem="{Binding SelectedFontStretch, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding .}" FontStretch="{Binding .}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Grid.Row="1" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontWeights, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontWeight" SelectedItem="{Binding SelectedFontWeight, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding .}" FontWeight="{Binding .}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <xctk:DecimalUpDown Grid.Column="2" Minimum="5" Maximum="64" Value="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" FormatString="F1" Margin="2" VerticalAlignment="Top" x:Name="SelectedFontSize"></xctk:DecimalUpDown>
+            </Grid>
+
+            <ListBox ItemsSource="{Binding Fonts}" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedFont}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock 
                         Text="{Binding Display}" 
                         HorizontalAlignment="Stretch"
                         FontFamily="{Binding Name}"
@@ -76,10 +84,21 @@
                         FontStyle="{Binding ElementName=SelectedFontStyle, Path=SelectedItem}"
                         FontWeight="{Binding ElementName=SelectedFontWeight, Path=SelectedItem}"
                         ToolTip="{Binding Name}"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
-        </ListBox>
+            </ListBox>
+        </Grid>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" Background="#FFBCBCBC"></GridSplitter>
+        
+        <TabControl Grid.Column="2">
+            <TabItem Header="Info">
+                <views:FontView/>
+            </TabItem>
+            <TabItem Header="Sample">
+                <views:SampleView/>
+            </TabItem>
 
+        </TabControl>
     </Grid>
 </Window>
