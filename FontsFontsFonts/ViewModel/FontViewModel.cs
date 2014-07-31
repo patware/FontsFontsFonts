@@ -33,28 +33,30 @@ namespace FontsFontsFonts.ViewModel
                 var ff = new System.Windows.Media.FontFamily("Arial");
                 loadFont(ff);
             }
+            
         }
 
         #region Privates Don't look
         private void loadFont(System.Windows.Media.FontFamily fontFamily)
         {
-            FontName = fontFamily.ToString();
-            Baseline = fontFamily.Baseline;
-            BaseUri = (fontFamily.BaseUri == null) ? "N/A" : fontFamily.BaseUri.ToString();
-            FamilyMaps.Clear();
+
+            _fontName = fontFamily.ToString();
+            _baseline = fontFamily.Baseline;
+            _baseUri = (fontFamily.BaseUri == null) ? "N/A" : fontFamily.BaseUri.ToString();
+            _familyMaps.Clear();
             foreach (var fm in fontFamily.FamilyMaps)
-                FamilyMaps.Add(fm);
+                _familyMaps.Add(fm);
 
-            FamilyNames.Clear();
+            _familyNames.Clear();
             foreach (var fn in fontFamily.FamilyNames)
-                FamilyNames.Add(new KeyValuePair<string,string>(fn.Key.ToString(), fn.Value));
+                _familyNames.Add(new KeyValuePair<string,string>(fn.Key.ToString(), fn.Value));
 
-            FamilyTypeFaces.Clear();
+            _familyTypeFaces.Clear();
             foreach (var ftf in fontFamily.FamilyTypefaces)
-                FamilyTypeFaces.Add(ftf);
+                _familyTypeFaces.Add(ftf);
 
-            LineSpacing = fontFamily.LineSpacing;
-            Source = fontFamily.Source;
+            _lineSpacing = fontFamily.LineSpacing;
+            _source = fontFamily.Source;
 
         }
         #endregion
