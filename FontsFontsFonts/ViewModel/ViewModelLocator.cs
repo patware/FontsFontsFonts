@@ -11,8 +11,8 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
 using FontsFontsFonts.Model;
+using CommonServiceLocator;
 
 namespace FontsFontsFonts.ViewModel
 {
@@ -89,6 +89,7 @@ namespace FontsFontsFonts.ViewModel
         /// </summary>
         public static void Cleanup()
         {
+			System.Diagnostics.Debug.WriteLine("Cleanup");
         }
     }
 }

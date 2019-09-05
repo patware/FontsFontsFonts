@@ -40,8 +40,9 @@ namespace FontsFontsFonts.Model
         {
             get { return _overrideDisplayWith; }
             set 
-            { 
-                RaisePropertyChanging(DisplayPropertyName);
+            {
+				if (_overrideDisplayWith == value) return;
+
                 _overrideDisplayWith = value;
                 RaisePropertyChanged(DisplayPropertyName);
 
