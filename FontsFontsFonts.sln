@@ -10,6 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		Readme.md = Readme.md
 	EndProjectSection
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontsFontsFonts", "FontsFontsFonts\FontsFontsFonts.csproj", "{DC9AA2F4-2281-40B1-BF86-6F4556370455}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A14490A-2708-407B-905B-1CC3F7CA6217}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,5 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D66D5D25-01F2-40AE-B451-3EEC8DAC85EB}
+		SolutionGuid = {04B1C55F-76E4-4FBA-83F6-6F0ACFC732BE}
 	EndGlobalSection
 EndGlobal
