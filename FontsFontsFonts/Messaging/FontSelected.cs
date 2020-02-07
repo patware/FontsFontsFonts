@@ -8,12 +8,12 @@ namespace FontsFontsFonts.Messaging
 {
     public class FontSelected
     {
-        public OneFont Font { get; set; }
+        public Models.OneFont Font { get; set; }
         public FontSelected()
         {
 
         }
-        public FontSelected(OneFont font)
+        public FontSelected(Models.OneFont font)
         {
             this.Font = font;
         }
