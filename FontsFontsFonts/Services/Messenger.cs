@@ -6,11 +6,11 @@ namespace FontsFontsFonts.Services
 {
     public class Messenger : IMessenger
     {
-        private readonly IList<WeakReference> _receivers = new List<WeakReference>();
+        private readonly IList<object> _receivers = new List<object>();
 
         public void Register<T>(Action<T> callback)
         {
-            _receivers.Add(new WeakReference(callback));
+            _receivers.Add(callback);
         }
         public void Send<T>(T message)
         {
@@ -18,13 +18,13 @@ namespace FontsFontsFonts.Services
 
             lock (_receivers)
             {
-                var referencesToRemove = new List<WeakReference>();
+                var referencesToRemove = new List<object>();
 
                 foreach (var wr in _receivers)
                 {
-                    if (wr.IsAlive)
+                    if (wr != null)
                     {
-                        if (wr.Target is Action<T> a)
+                        if (wr is Action<T> a)
                         {
                             a.Invoke(message);
                         }

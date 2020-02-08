@@ -8,6 +8,15 @@
              StartupUri="Views/MainWindow.xaml"
              mc:Ignorable="d">
     <Application.Resources>
-        <svc:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Other app resources here -->
+            <svc:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+            
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

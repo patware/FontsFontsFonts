@@ -121,6 +121,6 @@
     <value>GetInitialData - Design time</value>
   </data>
   <data name="SettingsServiceMessage" xml:space="preserve">
-    <value>GetInitialData - Run time</value>
+    <value />
   </data>
 </root>
