@@ -43,21 +43,21 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ComboBox Grid.Row="0" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontStyles, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontStyle" FontStyle="{Binding Path=SelectedItem}" SelectedItem="{Binding SelectedFontStyle, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox Grid.Row="0" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontStyles, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontStyle" FontStyle="{Binding Path=WindowsFontStyleSelected}" SelectedItem="{Binding Path=WindowsFontStyleSelected, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding .}" FontStyle="{Binding .}"></TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <ComboBox Grid.Row="0" Grid.Column="1" Margin="2" ItemsSource="{Binding WindowsFontStretches, UpdateSourceTrigger=PropertyChanged}" x:Name="SelegedFontStretch" SelectedItem="{Binding SelectedFontStretch, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="2" ItemsSource="{Binding WindowsFontStretches, UpdateSourceTrigger=PropertyChanged}" x:Name="SelegedFontStretch" FontStretch="{Binding Path=WindowsFontStretcheSelected}" SelectedItem="{Binding WindowsFontStretcheSelected, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding .}" FontStretch="{Binding .}"></TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <ComboBox Grid.Row="1" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontWeights, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontWeight" SelectedItem="{Binding SelectedFontWeight, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox Grid.Row="1" Grid.Column="0" Margin="2" ItemsSource="{Binding WindowsFontWeights, UpdateSourceTrigger=PropertyChanged}" x:Name="SelectedFontWeight" FontWeight="{Binding Path=WindowsFontWeightSelected}" SelectedItem="{Binding WindowsFontWeightSelected, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding .}" FontWeight="{Binding .}"></TextBlock>
@@ -65,14 +65,14 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <TextBox Grid.Column="2" Text="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" Margin="2" VerticalAlignment="Top" x:Name="SelectedFontSize"></TextBox>
+                <Slider Grid.Column="2" Value="{Binding FontSize, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="50" x:Name="SelectedFontSize"></Slider>
             </Grid>
 
             <ListBox ItemsSource="{Binding Fonts}" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedFont}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock 
-                        Text="{Binding Display}" 
+                        <TextBlock
+                        Text="{Binding Display}"
                         HorizontalAlignment="Stretch"
                         FontFamily="{Binding Name}"
                         FontSize="{Binding ElementName=SelectedFontSize, Path=Value}"

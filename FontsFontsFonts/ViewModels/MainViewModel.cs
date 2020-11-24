@@ -1,23 +1,25 @@
 ﻿using FontsFontsFonts.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
 
 namespace FontsFontsFonts.ViewModels
 {
     public class MainViewModel : Base.ViewModelBase
     {
-        private readonly Services.ISettingsService _settingsService;
+        ///private readonly Services.ISettingsService _settingsService;
         private readonly IMessenger _messaging;
 
         public MainViewModel(Services.ISettingsService settingsService, Services.IMessenger messaging)
         {
-            _settingsService = settingsService ?? throw new ArgumentNullException(nameof(settingsService));
+            if (settingsService == null)
+                throw new ArgumentNullException(nameof(settingsService));
+
             _messaging = messaging;
 
             _input = "Before GetInitialData";
 
-            _settingsService.GetInitialData((item, error) => { 
+            settingsService.GetInitialData((item, error) => {
                 if (error != null)
                 {
                     return;
@@ -47,9 +49,9 @@ namespace FontsFontsFonts.ViewModels
                     SendFontName();
                     break;
                 case FontSizePropertyName:
-                case SelectedFontStretchPropertyName:
-                case SelectedFontStylePropertyName:
-                case SelectedFontWeightPropertyName:
+                case WindowsFontStretcheSelectedPropertyName:
+                case WindowsFontStyleSelectedPropertyName:
+                case WindowsFontWeightSelectedPropertyName:
                     SendFontStyle();
                     break;
             }
@@ -60,9 +62,9 @@ namespace FontsFontsFonts.ViewModels
             var fsc = new Messaging.FontStylingChanged()
             {
                 FontSize = this.FontSize,
-                FontStretch = this.SelectedFontStretch,
-                FontStyle = this.SelectedFontStyle,
-                FontWeight = this.SelectedFontWeight
+                FontStretch = this.WindowsFontStretcheSelected,
+                FontStyle = this.WindowsFontStyleSelected,
+                FontWeight = this.WindowsFontWeightSelected
             };
             _messaging.Send<Messaging.FontStylingChanged>(fsc);
         }
@@ -73,52 +75,57 @@ namespace FontsFontsFonts.ViewModels
         }
         private void AddFontStyles()
         {
-            var fontstyles = new List<System.Windows.FontStyle>();
-            fontstyles.Add(System.Windows.FontStyles.Normal);
-            fontstyles.Add(System.Windows.FontStyles.Italic);
-            fontstyles.Add(System.Windows.FontStyles.Oblique);
-            _windowsFontStyles = fontstyles.ToArray();
+            var fontstyles = new List<System.Windows.FontStyle>
+            {
+                System.Windows.FontStyles.Normal,
+                System.Windows.FontStyles.Italic,
+                System.Windows.FontStyles.Oblique
+            };
+            _windowsFontStyles = new ObservableCollection<System.Windows.FontStyle>(fontstyles);
         }
 
         private void AddFontStretches()
         {
-            var fontstretches = new List<System.Windows.FontStretch>();
-            fontstretches.Add(System.Windows.FontStretches.Condensed);
-            fontstretches.Add(System.Windows.FontStretches.Expanded);
-            fontstretches.Add(System.Windows.FontStretches.ExtraCondensed);
-            fontstretches.Add(System.Windows.FontStretches.ExtraExpanded);
-            fontstretches.Add(System.Windows.FontStretches.Medium);
-            //fontstretches.Add(FontStretches.Normal);
-            fontstretches.Add(System.Windows.FontStretches.SemiCondensed);
-            fontstretches.Add(System.Windows.FontStretches.SemiExpanded);
-            fontstretches.Add(System.Windows.FontStretches.UltraCondensed);
-            fontstretches.Add(System.Windows.FontStretches.UltraExpanded);
+            var fontstretches = new List<System.Windows.FontStretch>
+            {
+                System.Windows.FontStretches.Condensed,
+                System.Windows.FontStretches.Expanded,
+                System.Windows.FontStretches.ExtraCondensed,
+                System.Windows.FontStretches.ExtraExpanded,
+                System.Windows.FontStretches.Medium,
+                ///fontstretches.Add(FontStretches.Normal);
+                System.Windows.FontStretches.SemiCondensed,
+                System.Windows.FontStretches.SemiExpanded,
+                System.Windows.FontStretches.UltraCondensed,
+                System.Windows.FontStretches.UltraExpanded
+            };
 
-            _windowsFontStretches = fontstretches.ToArray();
+            _windowsFontStretches = new ObservableCollection<System.Windows.FontStretch>(fontstretches);
         }
 
         private void AddFontWeights()
         {
-            var items = new List<System.Windows.FontWeight>();
+            var items = new List<System.Windows.FontWeight>
+            {
+                System.Windows.FontWeights.Black,
+                System.Windows.FontWeights.Bold,
+                System.Windows.FontWeights.DemiBold,
+                System.Windows.FontWeights.ExtraBlack,
+                System.Windows.FontWeights.ExtraBold,
+                System.Windows.FontWeights.ExtraLight,
+                System.Windows.FontWeights.Heavy,
+                System.Windows.FontWeights.Light,
+                System.Windows.FontWeights.Medium,
+                ///items.Add(FontWeights.Normal);
+                System.Windows.FontWeights.Regular,
+                System.Windows.FontWeights.SemiBold,
+                System.Windows.FontWeights.Thin,
+                System.Windows.FontWeights.UltraBlack,
+                System.Windows.FontWeights.UltraBold,
+                System.Windows.FontWeights.UltraLight
+            };
 
-            items.Add(System.Windows.FontWeights.Black);
-            items.Add(System.Windows.FontWeights.Bold);
-            items.Add(System.Windows.FontWeights.DemiBold);
-            items.Add(System.Windows.FontWeights.ExtraBlack);
-            items.Add(System.Windows.FontWeights.ExtraBold);
-            items.Add(System.Windows.FontWeights.ExtraLight);
-            items.Add(System.Windows.FontWeights.Heavy);
-            items.Add(System.Windows.FontWeights.Light);
-            items.Add(System.Windows.FontWeights.Medium);
-            //items.Add(FontWeights.Normal);
-            items.Add(System.Windows.FontWeights.Regular);
-            items.Add(System.Windows.FontWeights.SemiBold);
-            items.Add(System.Windows.FontWeights.Thin);
-            items.Add(System.Windows.FontWeights.UltraBlack);
-            items.Add(System.Windows.FontWeights.UltraBold);
-            items.Add(System.Windows.FontWeights.UltraLight);
-
-            _windowsFontWeights = items.ToArray();
+            _windowsFontWeights = new ObservableCollection<System.Windows.FontWeight>(items);
         }
         private void SetFontOverride()
         {
@@ -140,7 +147,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the Input property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public string Input
         {
@@ -170,28 +177,17 @@ namespace FontsFontsFonts.ViewModels
         /// </summary>
         public const string WindowsFontStylesPropertyName = "WindowsFontStyles";
 
-        private System.Windows.FontStyle[] _windowsFontStyles;
+        private ObservableCollection<System.Windows.FontStyle> _windowsFontStyles;
 
         /// <summary>
         /// Sets and gets the WindowsFontStyles property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
-        public System.Windows.FontStyle[] WindowsFontStyles
+        public ObservableCollection<System.Windows.FontStyle> WindowsFontStyles
         {
             get
             {
                 return _windowsFontStyles;
-            }
-
-            set
-            {
-                if (_windowsFontStyles == value)
-                {
-                    return;
-                }
-
-                _windowsFontStyles = value;
-                RaisePropertyChanged(WindowsFontStylesPropertyName);
             }
         }
 
@@ -203,7 +199,7 @@ namespace FontsFontsFonts.ViewModels
         private System.Collections.ObjectModel.ReadOnlyObservableCollection<Models.OneFont> _fonts;
         /// <summary>
         /// Sets and gets the Fonts property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public System.Collections.ObjectModel.ReadOnlyObservableCollection<Models.OneFont> Fonts
         {
@@ -222,7 +218,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the SelectedFont property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public Models.OneFont SelectedFont
         {
@@ -254,7 +250,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the FontSize property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public decimal FontSize
         {
@@ -282,28 +278,17 @@ namespace FontsFontsFonts.ViewModels
         /// </summary>
         public const string WindowsFontStretchesPropertyName = "WindowsFontStretches";
 
-        private System.Windows.FontStretch[] _windowsFontStretches;
+        private ObservableCollection<System.Windows.FontStretch> _windowsFontStretches;
 
         /// <summary>
         /// Sets and gets the WindowsFontStretches property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
-        public System.Windows.FontStretch[] WindowsFontStretches
+        public ObservableCollection<System.Windows.FontStretch> WindowsFontStretches
         {
             get
             {
                 return _windowsFontStretches;
-            }
-
-            set
-            {
-                if (_windowsFontStretches == value)
-                {
-                    return;
-                }
-
-                _windowsFontStretches = value;
-                RaisePropertyChanged(WindowsFontStretchesPropertyName);
             }
         }
         #endregion
@@ -314,124 +299,113 @@ namespace FontsFontsFonts.ViewModels
         /// </summary>
         public const string WindowsFontWeightsPropertyName = "WindowsFontWeights";
 
-        private System.Windows.FontWeight[] _windowsFontWeights;
+        private ObservableCollection<System.Windows.FontWeight> _windowsFontWeights;
 
         /// <summary>
         /// Sets and gets the WindowsFontWeights property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
-        public System.Windows.FontWeight[] WindowsFontWeights
+        public ObservableCollection<System.Windows.FontWeight> WindowsFontWeights
         {
             get
             {
                 return _windowsFontWeights;
             }
-
-            set
-            {
-                if (_windowsFontWeights == value)
-                {
-                    return;
-                }
-
-                _windowsFontWeights = value;
-                RaisePropertyChanged(WindowsFontWeightsPropertyName);
-            }
         }
         #endregion
 
-        #region SelectedFontStyle
+        #region WindowsFontStyleSelected
         /// <summary>
-        /// The <see cref="SelectedFontStyle" /> property's name.
+        /// The <see cref="WindowsFontStyleSelected" /> property's name.
         /// </summary>
-        public const string SelectedFontStylePropertyName = "SelectedFontStyle";
+        public const string WindowsFontStyleSelectedPropertyName = "WindowsFontStyleSelected";
 
-        private System.Windows.FontStyle _selectedFontStyle;
+        private System.Windows.FontStyle _WindowsFontStyleSelected;
 
         /// <summary>
-        /// Sets and gets the SelectedFontStyle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Sets and gets the WindowsFontStyleSelected property.
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
-        public System.Windows.FontStyle SelectedFontStyle
+        public System.Windows.FontStyle WindowsFontStyleSelected
         {
             get
             {
-                return _selectedFontStyle;
+                return _WindowsFontStyleSelected;
             }
 
             set
             {
-                if (_selectedFontStyle == value)
+                if (_WindowsFontStyleSelected == value)
                 {
                     return;
                 }
 
-                _selectedFontStyle = value;
-                RaisePropertyChanged(SelectedFontStylePropertyName);
+                _WindowsFontStyleSelected = value;
+                RaisePropertyChanged(WindowsFontStyleSelectedPropertyName);
             }
         }
         #endregion
 
-        #region SelectedFontStretch
+        #region WindowsFontStretcheSelected
         /// <summary>
-        /// The <see cref="SelectedFontStretch" /> property's name.
+        /// The <see cref="WindowsFontStretcheSelected" /> property's name.
         /// </summary>
-        public const string SelectedFontStretchPropertyName = "SelectedFontStretch";
+        public const string WindowsFontStretcheSelectedPropertyName = "WindowsFontStretcheSelected";
 
-        private System.Windows.FontStretch _selectedFontStretch;
+        private System.Windows.FontStretch _WindowsFontStretcheSelected;
 
         /// <summary>
-        /// Sets and gets the SelectedFontStretch property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Sets and gets the WindowsFontStretcheSelected property.
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
-        public System.Windows.FontStretch SelectedFontStretch
+        public System.Windows.FontStretch WindowsFontStretcheSelected
         {
             get
             {
-                return _selectedFontStretch;
+                return _WindowsFontStretcheSelected;
             }
 
             set
             {
-                if (_selectedFontStretch == value)
+                if (_WindowsFontStretcheSelected == value)
                 {
                     return;
                 }
 
-                _selectedFontStretch = value;
-                RaisePropertyChanged(SelectedFontStretchPropertyName);
+                _WindowsFontStretcheSelected = value;
+                RaisePropertyChanged(WindowsFontStretcheSelectedPropertyName);
             }
         }
         #endregion
 
-        #region SelectedFontWeight
+        #region WindowsFontWeightSelected
         /// <summary>
-        /// The <see cref="SelectedFontWeight" /> property's name.
+        /// The <see cref="WindowsFontWeightSelected" /> property's name.
         /// </summary>
-        public const string SelectedFontWeightPropertyName = "SelectedFontWeight";
+        public const string WindowsFontWeightSelectedPropertyName = "WindowsFontWeightSelected";
 
-        private System.Windows.FontWeight _selectedFontWeight;
+        private System.Windows.FontWeight _WindowsFontWeightSelected;
 
         /// <summary>
         /// Sets and gets the SelectedFontWeight property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
-        public System.Windows.FontWeight SelectedFontWeight
+        public System.Windows.FontWeight WindowsFontWeightSelected
         {
             get
             {
-                return _selectedFontWeight;
+                return _WindowsFontWeightSelected;
             }
 
             set
             {
-                if (_selectedFontWeight == value)
+                if (_WindowsFontWeightSelected == value)
                 {
                     return;
                 }
 
-                _selectedFontWeight = value;
-                RaisePropertyChanged(SelectedFontWeightPropertyName);
+                _WindowsFontWeightSelected = value;
+                RaisePropertyChanged(WindowsFontWeightSelectedPropertyName);
             }
         }
         #endregion

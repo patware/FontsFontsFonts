@@ -17,6 +17,12 @@ namespace FontsFontsFonts.ViewModels
         {
             if (messaging == null) throw new System.ArgumentNullException(nameof(messaging));
 
+            _fontFamily = "Arial";
+            _selectedFontSize = 12;
+            _selectedFontStretch = System.Windows.FontStretches.Normal;
+            _selectedFontStyle = System.Windows.FontStyles.Normal;
+            _selectedFontWeight = System.Windows.FontWeights.Normal;
+
             messaging.Register<Messaging.FontSelected>(onFontSelected);
             messaging.Register<Messaging.FontStylingChanged>(onFontStylingChanged);
         }
@@ -45,7 +51,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the FontFamily property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public string FontFamily
         {
@@ -77,7 +83,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the SelectedFontSize property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public decimal SelectedFontSize
         {
@@ -109,7 +115,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the SelectedFontStyle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public System.Windows.FontStyle SelectedFontStyle
         {
@@ -141,7 +147,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the SelectedFontStretch property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public FontStretch SelectedFontStretch
         {
@@ -173,7 +179,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the SelectedFontWeight property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public FontWeight SelectedFontWeight
         {
@@ -194,6 +200,6 @@ namespace FontsFontsFonts.ViewModels
             }
         }
         #endregion
-	
+
     }
 }

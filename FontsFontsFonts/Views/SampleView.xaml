@@ -11,7 +11,7 @@
         <TextBlock TextWrapping="Wrap"
                    FontFamily="{Binding FontFamily}" 
                    FontSize="{Binding SelectedFontSize}"
-                   FontStretch="{Binding SelegedFontStretch}"
+                   FontStretch="{Binding SelectedFontStretch}"
                    FontStyle="{Binding SelectedFontStyle}"
                    FontWeight="{Binding SelectedFontWeight}"
                    Margin="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi augue nunc, vulputate a est in, tempus varius eros. Nullam ut leo commodo, fermentum magna eget, rutrum ligula. Nulla ornare nisi nec sapien aliquam, in posuere ipsum posuere. Aenean vel massa viverra, pellentesque nulla at, laoreet enim. Vivamus et congue nibh. Praesent tristique luctus adipiscing. Quisque in orci vitae eros sollicitudin commodo ac sed felis. Nullam ligula dui, malesuada et porttitor sed, imperdiet vitae purus. Nulla sit amet nisl eu augue iaculis porttitor. Donec eget tincidunt quam. Mauris volutpat leo quis lacus dignissim, id molestie massa tempor.</TextBlock>

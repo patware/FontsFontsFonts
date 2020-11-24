@@ -61,7 +61,7 @@ namespace FontsFontsFonts.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GetInitialData - Design time.
+        ///   Looks up a localized string similar to Message - Design time.
         /// </summary>
         internal static string SettingsServiceDesignMessage {
             get {

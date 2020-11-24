@@ -1,7 +1,6 @@
 ﻿using FontsFontsFonts.Messaging;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FontsFontsFonts.ViewModels
 {
@@ -62,7 +61,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the FontName property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public string FontName
         {
@@ -94,7 +93,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the Baseline property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public double Baseline
         {
@@ -126,7 +125,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the BaseUri property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
 #pragma warning disable CA1056 // Uri properties should not be strings
         public string BaseUri
@@ -158,7 +157,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the FamilyMaps property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public System.Collections.ObjectModel.ObservableCollection<System.Windows.Media.FontFamilyMap> FamilyMaps
         {
@@ -171,10 +170,10 @@ namespace FontsFontsFonts.ViewModels
         /// The <see cref="FamilyNames" /> property's name.
         /// </summary>
         public const string FamilyNamesPropertyName = "FamilyNames";
-        
+
         /// <summary>
         /// Sets and gets the FamilyNames property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public System.Collections.ObjectModel.ObservableCollection<KeyValuePair<string, string>> FamilyNames
         {
@@ -190,7 +189,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the FamilyTypeFaces property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public System.Collections.ObjectModel.ObservableCollection<System.Windows.Media.FamilyTypeface> FamilyTypeFaces
         {
@@ -208,7 +207,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the LineSpacing property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public double LineSpacing
         {
@@ -240,7 +239,7 @@ namespace FontsFontsFonts.ViewModels
 
         /// <summary>
         /// Sets and gets the Source property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public string Source
         {
